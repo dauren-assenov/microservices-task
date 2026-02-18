@@ -1,0 +1,37 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Compiled archives
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven build directories
+target/
+build/
+out/
+
+# IDE specific files
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# Eclipse
+.settings/
+.project
+.classpath
+.springBeans
+
+# Visual Studio Code
+.vscode/
+
+# Mac OS system files
+.DS_Store
