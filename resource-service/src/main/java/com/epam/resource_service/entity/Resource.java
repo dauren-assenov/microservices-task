@@ -11,6 +11,6 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Lob
+    @Column(columnDefinition = "BYTEA")
     private byte[] data;
 }
