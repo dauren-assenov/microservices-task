@@ -29,9 +29,9 @@ public class ResourceService {
     @Value("${song.service.url}")
     private String songServiceUrl;
 
-    public ResourceService(ResourceRepository repository) {
+    public ResourceService(ResourceRepository repository, RestTemplate restTemplate) {
         this.repository = repository;
-        this.restTemplate = new RestTemplate();
+        this.restTemplate = restTemplate;
     }
 
     @Transactional

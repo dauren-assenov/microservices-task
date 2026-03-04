@@ -23,6 +23,12 @@ services:
     volumes:
       - ./init-scripts/song-db:/docker-entrypoint-initdb.d
 
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+
   resource-service:
     build: ./resource-service
     container_name: resource-service
@@ -33,17 +39,22 @@ services:
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
       SONG_SERVICE_URL: ${SONG_SERVICE_URL}
+      EUREKA_URL: ${EUREKA_URL}
     depends_on:
       - resource-db
+      - eureka-server
 
   song-service:
     build: ./song-service
-    container_name: song-service
+    deploy:
+      replicas: 2
     ports:
-      - "8082:8082"
+      - "8082-8083:8082"
     environment:
       SONG_DB_URL: ${SONG_DB_URL}
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
+      EUREKA_URL: ${EUREKA_URL}
     depends_on:
       - song-db
+      - eureka-server
