@@ -29,6 +29,16 @@ services:
     ports:
       - "8761:8761"
 
+  gateway-service:
+    build: ./gateway-service
+    container_name: gateway-service
+    ports:
+      - "8080:8080"
+    environment:
+      EUREKA_URL: ${EUREKA_URL}
+    depends_on:
+      - eureka-server
+
   resource-service:
     build: ./resource-service
     container_name: resource-service
